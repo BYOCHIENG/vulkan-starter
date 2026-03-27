@@ -36,9 +36,7 @@ Instance Extensions: count = X
 ```
 
 Cube
-<figure>
-  <img src="/public/vkcube.png" alt="vkcube" width="300" height="300">
-</figure>
+![vkcube](/public/vkcube.png)
 
 #### GLFW Packages
 
