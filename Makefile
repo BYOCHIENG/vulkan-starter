@@ -12,9 +12,13 @@ endif
 VulkanTest: main.cpp
 	g++ $(CFLAGS) -o VulkanTest main.cpp $(LDFLAGS)
 
-.PHONY: test clean
+.PHONY: test debug clean
 
 test: VulkanTest
+	./VulkanTest
+
+debug: main.cpp
+	g++ -g -O0 -std=c++17 -o VulkanTest main.cpp $(LDFLAGS)
 	./VulkanTest
 
 clean:
