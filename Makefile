@@ -1,6 +1,6 @@
 UNAME_S := $(shell uname -s)
 
-CFLAGS = -std=c++17 -O2
+CFLAGS = -g -O0 -std=c++17 -O2
 
 ifeq ($(UNAME_S),Darwin) # Check for MacOS
     CFLAGS += -I/opt/homebrew/include
@@ -17,8 +17,7 @@ VulkanTest: main.cpp
 test: VulkanTest
 	./VulkanTest
 
-debug: main.cpp
-	g++ -g -O0 -std=c++17 -o VulkanTest main.cpp $(LDFLAGS)
+debug: VulkanTest
 	./VulkanTest
 
 clean:
