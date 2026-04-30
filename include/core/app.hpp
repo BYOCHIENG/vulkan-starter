@@ -3,12 +3,12 @@
 #include <GLFW/glfw3.h>
 #include <vulkan/vulkan.h>
 
-#include "device.hpp"
-#include "swapchain.hpp"
-#include "pipeline.hpp"
-#include "buffers.hpp"
-#include "sync.hpp"
-#include "commands.hpp"
+#include "core/device.hpp"
+#include "render/swapchain.hpp"
+#include "render/pipeline.hpp"
+#include "render/buffers.hpp"
+#include "render/sync.hpp"
+#include "render/commands.hpp"
 
 #include <stdexcept>
 

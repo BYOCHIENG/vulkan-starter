@@ -1,4 +1,4 @@
-#include "sync.hpp"
+#include "render/sync.hpp"
 
 #include <iostream>
 #include <stdexcept>

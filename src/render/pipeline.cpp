@@ -1,4 +1,4 @@
-#include "pipeline.hpp"
+#include "render/pipeline.hpp"
 
 #include <iostream>
 #include <fstream>
@@ -103,8 +103,8 @@ void Pipeline::createRenderPass(VkDevice device, VkFormat swapChainImageFormat) 
 }
 
 void Pipeline::createGraphicsPipeline(VkDevice device, VkRenderPass renderPass, VkExtent2D swapChainExtent) {
-    auto vertShaderCode = readFile("build/vert.spv");
-    auto fragShaderCode = readFile("build/frag.spv");
+    auto vertShaderCode = readFile("build/shaders/shader.vert.spv");
+    auto fragShaderCode = readFile("build/shaders/shader.frag.spv");
 
     VkShaderModule vertShaderModule = createShaderModule(device, vertShaderCode);
     VkShaderModule fragShaderModule = createShaderModule(device, fragShaderCode);
@@ -254,8 +254,8 @@ void Pipeline::createGraphicsPipeline(VkDevice device, VkRenderPass renderPass, 
 }
 
 void Pipeline::recreateGraphicsPipeline(VkDevice device, VkPipelineLayout pipelineLayout, VkExtent2D swapChainExtent) {
-    auto vertShaderCode = readFile("build/vert.spv");
-    auto fragShaderCode = readFile("build/frag.spv");
+    auto vertShaderCode = readFile("build/shaders/shader.vert.spv");
+    auto fragShaderCode = readFile("build/shaders/shader.frag.spv");
 
     VkShaderModule vertShaderModule = createShaderModule(device, vertShaderCode);
     VkShaderModule fragShaderModule = createShaderModule(device, fragShaderCode);

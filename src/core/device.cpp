@@ -1,4 +1,4 @@
-#include "device.hpp"
+#include "core/device.hpp"
 
 bool QueueFamilyIndices::isComplete() const {
     return graphicsFamily.has_value() && presentFamily.has_value();

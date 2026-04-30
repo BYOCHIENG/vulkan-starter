@@ -5,7 +5,7 @@ CFLAGS = -g -O0 -std=c++17 -I./include
 BUILD_DIR = build
 SRC_DIR = src
 
-SOURCES = $(wildcard $(SRC_DIR)/*.cpp)
+SOURCES = $(shell find $(SRC_DIR) -name '*.cpp')
 OBJECTS = $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(SOURCES))
 
 TARGET = $(BUILD_DIR)/VulkanTest
@@ -18,7 +18,8 @@ else
 endif
 
 SHADER_DIR = shaders
-SHADER_SPV = $(BUILD_DIR)/vert.spv $(BUILD_DIR)/frag.spv
+SHADER_SOURCES = $(shell find $(SHADER_DIR) -type f)
+SHADER_SPV = $(patsubst $(SHADER_DIR)/%,$(BUILD_DIR)/shaders/%.spv,$(SHADER_SOURCES))
 
 .PHONY: all test clean
 
@@ -28,15 +29,14 @@ $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp | $(BUILD_DIR)
+	@mkdir -p $(dir $@)
 	g++ $(CFLAGS) -c $< -o $@
 
 $(TARGET): $(OBJECTS) | $(BUILD_DIR)
 	g++ $(CFLAGS) $(OBJECTS) -o $(TARGET) $(LDFLAGS)
 
-$(BUILD_DIR)/vert.spv: $(SHADER_DIR)/shader.vert | $(BUILD_DIR)
-	glslc $< -o $@
-
-$(BUILD_DIR)/frag.spv: $(SHADER_DIR)/shader.frag | $(BUILD_DIR)
+$(BUILD_DIR)/shaders/%.spv: $(SHADER_DIR)/% | $(BUILD_DIR)
+	@mkdir -p $(dir $@)
 	glslc $< -o $@
 
 test: all
